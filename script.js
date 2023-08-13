@@ -6,9 +6,14 @@ const erasorButton = document.createElement("button");
 const randomColourButton = document.createElement("button");
 const toggleGridButton = document.createElement("button");
 const clearGridButton = document.createElement("button");
-const opacityButton = document.createElement("button");
+const shadingButton = document.createElement("button");
 let gridSize = 8;
 let setToggleGrid = false;
+
+//opacityButton
+shadingButton.textContent = "Add shading";
+shadingButton.classList.add("switch");
+menuBar.appendChild(shadingButton);
 
 //clearGridButton
 clearGridButton.textContent = "Clear grid";
@@ -135,6 +140,17 @@ function clearGrid(){
     })
 }
 
+function addShading(){
+   function shadeBox(){
+    getSquareDiv().forEach((box)=>{
+        box.addEventListener("mousedown", ()=>{
+            box.style.opacity++;
+        })
+    })
+   }
+   shadingButton.classList.contains("active") ? shadeBox() : useDefaultColour();
+}
+
 function setButtonClass(){
     const buttons = document.querySelectorAll(".switch");
     buttons.forEach((button)=>{
@@ -153,3 +169,4 @@ randomColourButton.addEventListener("click", useRandomColour);
 toggleGridButton.addEventListener("click", toggleGrid);
 gridSizeButton.addEventListener("click", getGridSize);
 clearGridButton.addEventListener("click", clearGrid);
+shadingButton.addEventListener("click", addShading);
