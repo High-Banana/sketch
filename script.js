@@ -64,6 +64,7 @@ function useDefaultColour() {
     getSquareDiv().forEach((box) => {
         box.addEventListener("mousedown", () => {
             box.style.backgroundColor = "rgb(0,0,0)";
+            box.style.opacity = 1;
         })
     })
 }
@@ -121,6 +122,7 @@ function useRandomColour(){
         getSquareDiv().forEach((box)=>{
             box.addEventListener("mousedown", ()=>{
                 box.style.backgroundColor = generateColours();
+                box.style.opacity = 1;
             })
         })
     }
@@ -137,14 +139,15 @@ function toggleGrid(){
 function clearGrid(){
     getSquareDiv().forEach((box)=>{
         box.style.backgroundColor = "rgb(255,255,255)";
+        box.style.opacity = 1;
     })
 }
 
 function addShading(){
    function shadeBox(){
     getSquareDiv().forEach((box)=>{
-        box.addEventListener("mousedown", ()=>{
-            box.style.opacity++;
+        box.addEventListener("mousedown", (event)=>{
+            box.style.opacity -= 0.1;
         })
     })
    }
