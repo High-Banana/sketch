@@ -82,7 +82,6 @@ function getGridSize() {
 getGridSize();
 
 function useErasor() {
-    erasorButton.addEventListener("click", () => {
         toggleErasor = !toggleErasor;
         function eraseColour() {
             erasorButton.classList.add("active");
@@ -97,25 +96,36 @@ function useErasor() {
             useDefaultColour();
         }
         toggleErasor ? eraseColour() : diselectErasor();
-    })
 }
-useErasor()
+
+erasorButton.addEventListener("click", useErasor);
 
 function useRandomColour(){
     toggleRandomColour = !toggleRandomColour;
-    function getColours(){
+    function generateColours(){
         let r = Math.floor(Math.random()*256);
         let g = Math.floor(Math.random()*256);
         let b = Math.floor(Math.random()*256);
 
         const colours = `rgb(${r},${g},${b})`;
-        console.log(colours);
         return colours;
     }
-    getSquareDiv().forEach((box)=>{
-        box.addEventListener("mousedown", ()=>{
-            box.style.backgroundColor = getColours();
+
+    function useColours(){
+        randomColourButton.classList.add("active");
+        getSquareDiv().forEach((box)=>{
+            box.addEventListener("mousedown", ()=>{
+                box.style.backgroundColor = generateColours();
+            })
         })
-    })
+    }
+
+    function diselectRandomColours(){
+        randomColourButton.classList.remove("active");
+        useDefaultColour();
+    }
+
+    toggleRandomColour ? useColours() : diselectRandomColours();
 }
-useRandomColour();
+
+randomColourButton.addEventListener("click", useRandomColour);
