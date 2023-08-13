@@ -5,8 +5,14 @@ const gridSizeButton = document.createElement("button");
 const erasorButton = document.createElement("button");
 const randomColourButton = document.createElement("button");
 const toggleGridButton = document.createElement("button");
+const clearGridButton = document.createElement("button");
+const opacityButton = document.createElement("button");
 let gridSize = 8;
 let setToggleGrid = false;
+
+//clearGridButton
+clearGridButton.textContent = "Clear grid";
+menuBar.appendChild(clearGridButton);
 
 //toggleGridLines
 toggleGridButton.textContent = "Toggle grid"
@@ -65,7 +71,6 @@ function removeGrid(parent) {
 }
 
 function getGridSize() {
-    gridSizeButton.addEventListener("click", () => {
         gridSize = prompt("Enter the value of row (row * row) (Maximum 100)");
 
         while (gridSize > 100) {
@@ -83,10 +88,7 @@ function getGridSize() {
         removeGrid(sketchBox);
         createGrid(gridSize);
         useDefaultColour();
-    })
 }
-getGridSize();
-
 
 function useErasor() {
         function eraseColour() {
@@ -117,7 +119,6 @@ function useRandomColour(){
             })
         })
     }
-
     randomColourButton.classList.contains("active") ? useColours() : useDefaultColour();
 }
 
@@ -125,6 +126,12 @@ function toggleGrid(){
     setToggleGrid = !setToggleGrid;
     getSquareDiv().forEach((button)=>{
         button.style.border = setToggleGrid ? "none" : "1px solid black";
+    })
+}
+
+function clearGrid(){
+    getSquareDiv().forEach((box)=>{
+        box.style.backgroundColor = "rgb(255,255,255)";
     })
 }
 
@@ -144,3 +151,5 @@ setButtonClass();
 erasorButton.addEventListener("click", useErasor);
 randomColourButton.addEventListener("click", useRandomColour);
 toggleGridButton.addEventListener("click", toggleGrid);
+gridSizeButton.addEventListener("click", getGridSize);
+clearGridButton.addEventListener("click", clearGrid);
