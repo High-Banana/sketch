@@ -2,6 +2,7 @@ const container = document.querySelector(".container");
 const sketchBox = document.createElement("div");
 const menuBar = document.createElement("div");
 const gridSizeButton = document.createElement("button");
+let gridSize = 8;
 
 //gridSizeButton
 gridSizeButton.textContent = "Change grid size";
@@ -33,3 +34,24 @@ function useDefaultColour(){
     })
 }
 useDefaultColour();
+
+function getGridSize(){
+    gridSizeButton.addEventListener("click", ()=>{
+        gridSize = prompt("Enter the value of row (row * row) (Maximum 100)");
+
+        while(gridSize > 100){
+            gridSize = prompt("Please enter value less than 100 because of performance issues");
+        }
+
+        while(gridSize <= 0){
+            gridSize = prompt("Please enter value higher than 0");
+        }
+
+        while(gridSize==="" || gridSize===undefined || isNaN(gridSize)){
+            gridSize = prompt("Please enter a valid number");
+        }
+
+        createGrid(gridSize);
+    })
+}
+getGridSize();
