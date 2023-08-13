@@ -75,13 +75,18 @@ function getGridSize() {
 }
 getGridSize();
 
-function useErasorButton() {
+function useErasor() {
     erasorButton.addEventListener("click", () => {
         toggleErasor = !toggleErasor;
-        if (toggleErasor) {
-            function eraseColour() {
-
-            }
+        function eraseColour() {
+            erasorButton.classList.add("active");
+            getSquareDiv().forEach((box) => {
+                box.addEventListener("mousedown", () => {
+                    box.style.backgroundColor = "rgb(255,255,255)";
+                })
+            })
         }
+        toggleErasor ? eraseColour() : useDefaultColour();
     })
 }
+useErasor()

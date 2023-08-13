@@ -50,3 +50,7 @@ button:hover{
     border-radius: 5px;
     gap: 2rem;
 }
+
+.active{
+    background-color: rgb(0, 74, 212);
+}
