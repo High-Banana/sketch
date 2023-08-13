@@ -86,7 +86,11 @@ function useErasor() {
                 })
             })
         }
-        toggleErasor ? eraseColour() : useDefaultColour();
+        function diselectErasor(){
+            erasorButton.classList.remove("active");
+            useDefaultColour();
+        }
+        toggleErasor ? eraseColour() : diselectErasor();
     })
 }
 useErasor()
