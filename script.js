@@ -3,8 +3,14 @@ const sketchBox = document.createElement("div");
 const menuBar = document.createElement("div");
 const gridSizeButton = document.createElement("button");
 const erasorButton = document.createElement("button");
+const randomColourButton = document.createElement("button");
 let gridSize = 8;
 let toggleErasor = false;
+let toggleRandomColour = false;
+
+//randomColourButton
+randomColourButton.textContent = "Random colour";
+menuBar.appendChild(randomColourButton);
 
 //erasorButton
 erasorButton.textContent = "Erasor";
@@ -94,3 +100,22 @@ function useErasor() {
     })
 }
 useErasor()
+
+function useRandomColour(){
+    toggleRandomColour = !toggleRandomColour;
+    function getColours(){
+        let r = Math.floor(Math.random()*256);
+        let g = Math.floor(Math.random()*256);
+        let b = Math.floor(Math.random()*256);
+
+        const colours = `rgb(${r},${g},${b})`;
+        console.log(colours);
+        return colours;
+    }
+    getSquareDiv().forEach((box)=>{
+        box.addEventListener("mousedown", ()=>{
+            box.style.backgroundColor = getColours();
+        })
+    })
+}
+useRandomColour();
