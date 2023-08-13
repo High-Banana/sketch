@@ -16,14 +16,15 @@ container.appendChild(menuBar);
 sketchBox.classList.add("sketchBox");
 container.appendChild(sketchBox);
 
-function createGrid() {
-    for (let i = 0; i < (16 * 16); i++) {
+function createGrid(row) {
+    sketchBox.style.setProperty("--grid-row", row);
+    for (let i = 0; i < (row * row); i++) {
         const squareDiv = document.createElement("div");
         squareDiv.classList.add("squareDiv");
         sketchBox.appendChild(squareDiv);
     }
 }
-createGrid();
+createGrid(gridSize);
 
 function useDefaultColour(){
     const gridBox = document.querySelectorAll(".squareDiv");
@@ -34,6 +35,12 @@ function useDefaultColour(){
     })
 }
 useDefaultColour();
+
+function removeGrid(parent){
+    while(parent.firstChild){
+        parent.firstChild.remove();
+    }
+}
 
 function getGridSize(){
     gridSizeButton.addEventListener("click", ()=>{
@@ -51,7 +58,9 @@ function getGridSize(){
             gridSize = prompt("Please enter a valid number");
         }
 
+        removeGrid(sketchBox);
         createGrid(gridSize);
+        useDefaultColour();
     })
 }
 getGridSize();
