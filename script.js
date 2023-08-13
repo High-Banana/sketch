@@ -5,8 +5,6 @@ const gridSizeButton = document.createElement("button");
 const erasorButton = document.createElement("button");
 const randomColourButton = document.createElement("button");
 let gridSize = 8;
-let toggleErasor = false;
-let toggleRandomColour = false;
 
 //randomColourButton
 randomColourButton.textContent = "Random colour";
@@ -85,7 +83,6 @@ getGridSize();
 
 setButtonClass();
 function useErasor() {
-        toggleErasor = !toggleErasor;
         function eraseColour() {
             // erasorButton.classList.add("active");
             getSquareDiv().forEach((box) => {
@@ -98,13 +95,12 @@ function useErasor() {
             // erasorButton.classList.remove("active");
             useDefaultColour();
         }
-        toggleErasor ? eraseColour() : diselectErasor();
+        erasorButton.classList.contains("active") ? eraseColour() : diselectErasor();
 }
 
 erasorButton.addEventListener("click", useErasor);
 
 function useRandomColour(){
-    toggleRandomColour = !toggleRandomColour;
     function generateColours(){
         let r = Math.floor(Math.random()*256);
         let g = Math.floor(Math.random()*256);
@@ -128,7 +124,7 @@ function useRandomColour(){
         useDefaultColour();
     }
 
-    toggleRandomColour ? useColours() : diselectRandomColours();
+    randomColourButton.classList.contains("active") ? useColours() : diselectRandomColours();
 }
 
 randomColourButton.addEventListener("click", useRandomColour);
