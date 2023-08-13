@@ -1,6 +1,11 @@
 const container = document.querySelector(".container");
 const sketchBox = document.createElement("div");
 const menuBar = document.createElement("div");
+const gridSizeButton = document.createElement("button");
+
+//gridSizeButton
+gridSizeButton.textContent = "Change grid size";
+menuBar.appendChild(gridSizeButton);
 
 //menuBar
 menuBar.classList.add("menu");
@@ -17,5 +22,14 @@ function createGrid() {
         sketchBox.appendChild(squareDiv);
     }
 }
-
 createGrid();
+
+function useDefaultColour(){
+    const gridBox = document.querySelectorAll(".squareDiv");
+    gridBox.forEach((box)=>{
+        box.addEventListener("mousedown", ()=>{
+            box.style.backgroundColor = "rgb(0,0,0)";
+        })
+    })
+}
+useDefaultColour();

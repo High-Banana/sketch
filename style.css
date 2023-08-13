@@ -4,19 +4,31 @@
     padding: 0;
 }
 
+button{
+    width: 80%;
+}
+
 .container{
     display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
 }
 
 .sketchBox{
     height: 500px;
     width: 500px;
-    background-color: gray;
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
+    border: 2rem solid rgb(59, 59, 59);
+    border-radius: 5px;
 }
 
 .squareDiv{
     border: 1px solid black;
+}
+
+.menu{
+    background-color: rgb(59, 59, 59);
+    width: 15rem;
 }
