@@ -4,6 +4,7 @@ const menuBar = document.createElement("div");
 const gridSizeButton = document.createElement("button");
 const erasorButton = document.createElement("button");
 let gridSize = 8;
+let toggleErasor = false;
 
 //erasorButton
 erasorButton.textContent = "Erasor";
@@ -31,9 +32,13 @@ function createGrid(row) {
 }
 createGrid(gridSize);
 
-function useDefaultColour() {
+function getSquareDiv() {
     const gridBox = document.querySelectorAll(".squareDiv");
-    gridBox.forEach((box) => {
+    return gridBox;
+}
+
+function useDefaultColour() {
+    getSquareDiv().forEach((box) => {
         box.addEventListener("mousedown", () => {
             box.style.backgroundColor = "rgb(0,0,0)";
         })
@@ -70,6 +75,13 @@ function getGridSize() {
 }
 getGridSize();
 
-function useErasorButton(){
+function useErasorButton() {
+    erasorButton.addEventListener("click", () => {
+        toggleErasor = !toggleErasor;
+        if (toggleErasor) {
+            function eraseColour() {
 
+            }
+        }
+    })
 }
