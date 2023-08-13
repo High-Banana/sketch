@@ -84,21 +84,15 @@ getGridSize();
 setButtonClass();
 function useErasor() {
         function eraseColour() {
-            // erasorButton.classList.add("active");
             getSquareDiv().forEach((box) => {
                 box.addEventListener("mousedown", () => {
                     box.style.backgroundColor = "rgb(255,255,255)";
                 })
             })
         }
-        function diselectErasor(){
-            // erasorButton.classList.remove("active");
-            useDefaultColour();
-        }
-        erasorButton.classList.contains("active") ? eraseColour() : diselectErasor();
+        erasorButton.classList.contains("active") ? eraseColour() : useDefaultColour();
 }
 
-erasorButton.addEventListener("click", useErasor);
 
 function useRandomColour(){
     function generateColours(){
@@ -111,7 +105,6 @@ function useRandomColour(){
     }
 
     function useColours(){
-        // randomColourButton.classList.add("active");
         getSquareDiv().forEach((box)=>{
             box.addEventListener("mousedown", ()=>{
                 box.style.backgroundColor = generateColours();
@@ -119,15 +112,8 @@ function useRandomColour(){
         })
     }
 
-    function diselectRandomColours(){
-        // randomColourButton.classList.remove("active");
-        useDefaultColour();
-    }
-
-    randomColourButton.classList.contains("active") ? useColours() : diselectRandomColours();
+    randomColourButton.classList.contains("active") ? useColours() : useDefaultColour();
 }
-
-randomColourButton.addEventListener("click", useRandomColour);
 
 function setButtonClass(){
     const buttons = document.querySelectorAll(".switch");
@@ -141,3 +127,6 @@ function setButtonClass(){
         })
     })
 }
+
+erasorButton.addEventListener("click", useErasor);
+randomColourButton.addEventListener("click", useRandomColour);
