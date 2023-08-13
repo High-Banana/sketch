@@ -23,6 +23,7 @@ button:hover{
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-evenly;
+    padding: 2rem;
 }
 
 .sketchBox{
@@ -46,4 +47,6 @@ button:hover{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
+    gap: 2rem;
 }
