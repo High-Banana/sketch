@@ -4,7 +4,13 @@ const menuBar = document.createElement("div");
 const gridSizeButton = document.createElement("button");
 const erasorButton = document.createElement("button");
 const randomColourButton = document.createElement("button");
+const toggleGridButton = document.createElement("button");
 let gridSize = 8;
+let setToggleGrid = false;
+
+//toggleGridLines
+toggleGridButton.textContent = "Toggle grid"
+menuBar.appendChild(toggleGridButton);
 
 //randomColourButton
 randomColourButton.textContent = "Random colour";
@@ -81,7 +87,7 @@ function getGridSize() {
 }
 getGridSize();
 
-setButtonClass();
+
 function useErasor() {
         function eraseColour() {
             getSquareDiv().forEach((box) => {
@@ -115,9 +121,15 @@ function useRandomColour(){
     randomColourButton.classList.contains("active") ? useColours() : useDefaultColour();
 }
 
+function toggleGrid(){
+    setToggleGrid = !setToggleGrid;
+    getSquareDiv().forEach((button)=>{
+        button.style.border = setToggleGrid ? "none" : "1px solid black";
+    })
+}
+
 function setButtonClass(){
     const buttons = document.querySelectorAll(".switch");
-
     buttons.forEach((button)=>{
         button.addEventListener("click", (event)=>{
             buttons.forEach((button)=>{
@@ -127,6 +139,8 @@ function setButtonClass(){
         })
     })
 }
+setButtonClass();
 
 erasorButton.addEventListener("click", useErasor);
 randomColourButton.addEventListener("click", useRandomColour);
+toggleGridButton.addEventListener("click", toggleGrid);
