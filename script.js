@@ -10,10 +10,12 @@ let toggleRandomColour = false;
 
 //randomColourButton
 randomColourButton.textContent = "Random colour";
+randomColourButton.classList.add("switch");
 menuBar.appendChild(randomColourButton);
 
 //erasorButton
 erasorButton.textContent = "Erasor";
+erasorButton.classList.add("switch");
 menuBar.appendChild(erasorButton);
 
 //gridSizeButton
@@ -81,10 +83,11 @@ function getGridSize() {
 }
 getGridSize();
 
+setButtonClass();
 function useErasor() {
         toggleErasor = !toggleErasor;
         function eraseColour() {
-            erasorButton.classList.add("active");
+            // erasorButton.classList.add("active");
             getSquareDiv().forEach((box) => {
                 box.addEventListener("mousedown", () => {
                     box.style.backgroundColor = "rgb(255,255,255)";
@@ -92,7 +95,7 @@ function useErasor() {
             })
         }
         function diselectErasor(){
-            erasorButton.classList.remove("active");
+            // erasorButton.classList.remove("active");
             useDefaultColour();
         }
         toggleErasor ? eraseColour() : diselectErasor();
@@ -112,7 +115,7 @@ function useRandomColour(){
     }
 
     function useColours(){
-        randomColourButton.classList.add("active");
+        // randomColourButton.classList.add("active");
         getSquareDiv().forEach((box)=>{
             box.addEventListener("mousedown", ()=>{
                 box.style.backgroundColor = generateColours();
@@ -121,7 +124,7 @@ function useRandomColour(){
     }
 
     function diselectRandomColours(){
-        randomColourButton.classList.remove("active");
+        // randomColourButton.classList.remove("active");
         useDefaultColour();
     }
 
@@ -129,3 +132,16 @@ function useRandomColour(){
 }
 
 randomColourButton.addEventListener("click", useRandomColour);
+
+function setButtonClass(){
+    const buttons = document.querySelectorAll(".switch");
+
+    buttons.forEach((button)=>{
+        button.addEventListener("click", (event)=>{
+            buttons.forEach((button)=>{
+                if(event.target!==button) button.classList.remove("active");
+            })
+            button.classList.toggle("active");
+        })
+    })
+}
