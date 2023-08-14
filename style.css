@@ -54,3 +54,7 @@ button:hover{
 .active{
     background-color: rgb(0, 74, 212);
 }
+
+.shade{
+    opacity: 0.5;
+}
